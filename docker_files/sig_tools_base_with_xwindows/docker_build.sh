@@ -1,0 +1,1 @@
+docker build -t cmap/matlibx --rm=true .

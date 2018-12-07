@@ -1,0 +1,6 @@
+destinationFolder=/cmap/tools/sig_tools/mcr/v84
+agreeToLicense=yes
+outputFile=matlabinstall_log
+mode=silent
+product.MATLAB
+product.MATLAB_Builder_JA
