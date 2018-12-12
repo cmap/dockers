@@ -110,7 +110,7 @@ var main = function(next){
                             script.push("mv ./Batch/* .");
 
                             var batchToolName = sigToolName + "_batch";
-                            script.push("docker build -t cmap/" + batchToolName + ":latest");
+                            script.push("docker build -t cmap/" + batchToolName + ":latest .");
                             script.push("docker build -t cmap/" + batchToolName + ":v" + dict.MORTAR_REVISION + " .");
                             script.push("docker push cmap/" + batchToolName + ":latest");
                             script.push("docker push cmap/" + batchToolName + ":v" + dict.MORTAR_REVISION);
