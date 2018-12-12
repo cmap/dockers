@@ -58,12 +58,18 @@ var main = function(next){
         ];
         if ( batchTools.includes(sigToolName) ) {
             isBatch = true;
-            aws_script.push("aws s3 cp --recursive s3://tools.clue.io/DockerBatch/ " + sigToolName + "/Batch/");
+            // rum.sh differs between two batch tools, pull Batch files based on sigToolName
+            if (sigToolName === "sig_collategutc_tool"){
+                aws_script.push("aws s3 cp --recursive s3://tools.clue.io/DockerCollateBatch/ " + sigToolName + "/Batch/");
+
+            } else {
+                aws_script.push("aws s3 cp --recursive s3://tools.clue.io/DockerGutcBatch/ " + sigToolName + "/Batch/")
+            }
         }
         async.eachSeries(aws_script, function(command, callback){
             executeCommand(command, workingDirectoryPath, callback);
         }, function(err, success){
-            if (err){ console.log("failed to download assets from s3"); }
+            if (err){ console.log("Failed to download assets from s3"); }
             else {
                 readConfig(yamlFilepath, function(err, config){
                     if (err){ console.log(err); }
